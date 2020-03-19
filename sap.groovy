@@ -10,7 +10,7 @@ def abap_unit(LABEL,HOST,CREDENTIAL,PACKAGE,COVERAGE) {
 			dir('sap-pipeline') {
 				sh "npx newman run abap_unit_coverage.postman_collection.json --insecure --bail " +
 				"--environment NPL.postman_environment.json " +
-				"--timeout-request 120000 " +
+				"--timeout-request 1200000 " +
 				"--global-var host=$HOST " +
 				"--global-var username=$USERNAME " +
 				"--global-var password=$PASSWORD " +
@@ -33,7 +33,7 @@ def abap_sci(LABEL,HOST,CREDENTIAL,PACKAGE,VARIANT) {
 			dir('sap-pipeline') {
 					sh "npx newman run abap_sci.postman_collection.json --insecure --bail " +
 					"--environment NPL.postman_environment.json " +
-					"--timeout-request 120000 " +
+					"--timeout-request 1200000 " +
 					"--global-var host=$HOST " +
 					"--global-var username=$USERNAME " +
 					"--global-var password=$PASSWORD " +
