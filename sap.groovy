@@ -8,7 +8,7 @@ def abap_unit(LABEL,HOST,CREDENTIAL,PACKAGE,COVERAGE) {
 	withCredentials([usernamePassword(credentialsId: CREDENTIAL, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 		stage('[' + LABEL + '] ABAP Unit') {
 			dir('sap-pipeline') {
-				bat "newman run abap_unit_coverage.postman_collection.json --insecure --bail " +
+				sh "newman run abap_unit_coverage.postman_collection.json --insecure --bail " +
 				"--environment NPL.postman_environment.json " +
 				"--timeout-request 120000 " +
 				"--global-var host=$HOST " +
@@ -30,8 +30,8 @@ def abap_sci(LABEL,HOST,CREDENTIAL,PACKAGE,VARIANT) {
 	
 	withCredentials([usernamePassword(credentialsId: CREDENTIAL, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {	
 		stage('[' + LABEL + '] ABAP Code Inspector') {
-			ls('sap-pipeline') {
-					bat "newman run abap_sci.postman_collection.json --insecure --bail " +
+			dir('sap-pipeline') {
+					sh "newman run abap_sci.postman_collection.json --insecure --bail " +
 					"--environment NPL.postman_environment.json " +
 					"--timeout-request 120000 " +
 					"--global-var host=$HOST " +
